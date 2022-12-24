@@ -6,9 +6,6 @@ metadata:
 spec:
   minReadySeconds: 5
   replicas: 1
-  selector:
-    matchExpressions: 
-      - name: cachedb 
   strategy:
     type: rollingUpdate
     rollingUpdate:
