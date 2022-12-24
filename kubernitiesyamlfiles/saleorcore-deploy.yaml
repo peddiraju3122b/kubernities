@@ -7,9 +7,8 @@ spec:
   minReadySeconds: 5
   replicas: 1
   selector:
-    app: saleorcore
     matchLabels: 
-      app: saleorcore 
+      name: saleorcore-deploy
   strategy:
     type: rollingUpdate
     rollingUpdate:
@@ -19,7 +18,7 @@ spec:
     metadata:
       name: saleorcore-pod
       labels:
-        app: saleorcore 
+        name: saleorcore-deploy
     spec:
       containers:
         - name: saleorcore
