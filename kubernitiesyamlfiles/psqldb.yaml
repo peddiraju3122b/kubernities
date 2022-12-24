@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posql-deploy
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    app: posql
+    matchLabels: 
+      app: posql 
+  strategy:
+    type: rollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: posql-pod
+      labels:
+        app: posql 
+    spec:
+      containers:
+        - name: posql
+          image: library/postgres:13-alpine
+          ports:
+            - containerPort: 5432 
+              protocol : TCP
+            
