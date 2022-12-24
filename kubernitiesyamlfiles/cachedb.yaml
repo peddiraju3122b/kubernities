@@ -7,11 +7,10 @@ spec:
   minReadySeconds: 5
   replicas: 1
   selector:
-    name: cachedb-deploy
-    matchExpressions:
+    matchLabels:
       name: cachedb-deploy
   strategy:
-    type: rollingUpdate
+    type: RollingUpdate
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
@@ -19,13 +18,11 @@ spec:
     metadata:
       name: cachedb-pod
       labels:
-        name: cachedb-deploy
+        name: cachedb-deploy        
     spec:
       containers:
-        - name: cachedb-deploy
+        - name: cachedb
           image: library/redis:5.0-alpine
           ports:
-            - containerPort: 6379 
+            - containerPort: 6379
               protocol : TCP
-    
-            
