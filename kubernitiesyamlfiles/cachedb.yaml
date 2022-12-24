@@ -8,9 +8,7 @@ spec:
   replicas: 1
   selector:
     matchExpressions: 
-      - name: cachedb
-    matchLabels:
-      app: cachedb 
+      - name: cachedb 
   strategy:
     type: rollingUpdate
     rollingUpdate:
