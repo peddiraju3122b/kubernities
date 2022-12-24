@@ -7,10 +7,10 @@ spec:
   minReadySeconds: 5
   replicas: 1
   selector:
-    matchLabels: 
-      name: saleorcore-deploy
+    matchLabels:
+      name: cachedb-deploy
   strategy:
-    type: rollingUpdate
+    type: RollingUpdate
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
@@ -18,12 +18,10 @@ spec:
     metadata:
       name: saleorcore-pod
       labels:
-        name: saleorcore-deploy
+        name: saleorcore-deploy        
     spec:
       containers:
         - name: saleorcore
           ports:
-            - containerPort: 8000 
+            - containerPort: 8000
               protocol : TCP
-          
-            
