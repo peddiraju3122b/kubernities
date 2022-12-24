@@ -3,9 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cachedb-deploy
-  labels:
-    environment: dev
-    app: cachedb-deploy
 spec:
   minReadySeconds: 5
   replicas: 1
