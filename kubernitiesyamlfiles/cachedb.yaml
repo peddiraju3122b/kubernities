@@ -7,8 +7,9 @@ spec:
   minReadySeconds: 5
   replicas: 1
   selector:
+    app: cachedb
     matchExpressions:
-      - name: cachedb
+      app: cachedb
   strategy:
     type: rollingUpdate
     rollingUpdate:
@@ -18,7 +19,7 @@ spec:
     metadata:
       name: cachedb-pod
       labels:
-        name: cachedb 
+        app: cachedb 
     spec:
       containers:
         - name: cachedb
