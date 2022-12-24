@@ -4,14 +4,15 @@ kind: Deployment
 metadata:
   name: cachedb-deploy
   labels:
-    name: cachedb-deploy
+    environment: dev
+    app: cachedb
 spec:
   minReadySeconds: 5
   replicas: 1
   selector:
-    name: cachedb-deploy
+    name: cachedb
     matchExpressions:
-      name: cachedb-deploy
+      name: cachedb
   strategy:
     type: rollingUpdate
     rollingUpdate:
@@ -21,10 +22,10 @@ spec:
     metadata:
       name: cachedb-pod
       labels:
-        name: cachedb-deploy
+        name: cachedb
     spec:
       containers:
-        - name: cachedb-deploy
+        - name: cachedb
           image: library/redis:5.0-alpine
           ports:
             - containerPort: 6379 
