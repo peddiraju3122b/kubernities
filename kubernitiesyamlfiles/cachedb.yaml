@@ -7,7 +7,6 @@ spec:
   minReadySeconds: 5
   replicas: 1
   selector:
-    app: cachedb
     matchLabels: 
       app: cachedb 
   strategy:
