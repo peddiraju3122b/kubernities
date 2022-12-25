@@ -8,7 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: cachedb-deploy
+      name: saleorcore-deploy
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -22,6 +22,7 @@ spec:
     spec:
       containers:
         - name: saleorcore
+          image: imgae@tmp/durable-2a7bc61e
           ports:
             - containerPort: 8000
               protocol : TCP
