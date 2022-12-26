@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: openmrs-db-deploy
+spec:
+  minReadySeconds: 3
+  replicas: 1
+  selector:
+    matchLabels: openmrs-db-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template: 
+    metadata:
+      name: openmrs-db-pod
+      labels:
+        name: openmrs-db-deploy
+    spec:
+      containers:
+        - name: openmrs-db-deploy
+          image: 
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: openmrs-db-vol
+              mountPath: /openmrs
+      volumes:
+        - name: openmrs-db-vol
+          secret:
+            secretName: openmrs
+            
+            
+        
