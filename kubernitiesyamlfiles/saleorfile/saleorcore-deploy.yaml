@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saleorcore-deploy
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      name: saleorcore-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: saleorcore-pod
+      labels:
+        name: saleorcore-deploy        
+    spec:
+      containers:
+        - name: saleorcore
+          image: imgae@tmp/durable-2a7bc61e
+          ports:
+            - containerPort: 8000
+              protocol : TCP

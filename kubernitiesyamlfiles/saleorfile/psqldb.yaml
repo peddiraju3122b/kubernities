@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: psqldb-deploy
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      name: psqldb-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: psqldb-pod
+      labels:
+        name: psqldb-deploy        
+    spec:
+      containers:
+        - name: psqldb
+          image: library/postgres:13-alpine
+          ports:
+            - containerPort: 5432
+              protocol : TCP
