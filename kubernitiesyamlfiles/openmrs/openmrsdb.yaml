@@ -7,7 +7,8 @@ spec:
   minReadySeconds: 3
   replicas: 1
   selector:
-    matchLabels: openmrs-db-deploy
+    matchLabels: 
+      name: openmrs-db-deploy
   strategy:
     type: RollingUpdate
     rollingUpdate: 
