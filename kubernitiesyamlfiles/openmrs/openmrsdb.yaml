@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: openmrs-db-deploy
-          image: 
+          image: peddiraju3122b/opemnrs-core:1.1
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -32,6 +32,3 @@ spec:
         - name: openmrs-db-vol
           secret:
             secretName: openmrs
-            
-            
-        
