@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: spc-svc 
+  name: spc-svc-lb
   annotations:
     imageregistry: https://hub.docker.com/layers/peddiraju3122b/spc/1.1    
 spec:
@@ -12,7 +12,7 @@ spec:
           - path: /spc/1.1
             backend:
               service:
-                name: spc-svc
+                name: spc-svc-lb
                 port: 
                   number: 8080
             pathType: Exact
@@ -56,15 +56,32 @@ spec:
 
 
 ---
+#apiVersion: v1
+#kind: Service
+#metadata:
+  #name: spc-svc
+#spec:
+  #type: ClusterIP
+  #selector:
+    #app: spc
+  #ports:
+    #- name: spcport
+      #port: 8080      
+      #protocol: TCP            
+
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: spc-svc
+  name: spc-svc-lb
+  annotations:
+    kubernetes.io/role/internal-elb:"1"
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: spc
   ports:
     - name: spcport
-      port: 8080      
-      protocol: TCP            
+      port: 35000
+      targetport: 8080     
+        
