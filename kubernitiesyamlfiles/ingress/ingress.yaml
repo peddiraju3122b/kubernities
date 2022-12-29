@@ -4,12 +4,12 @@ kind: Ingress
 metadata:
   name: spc-svc 
   annotations:
-    imageregistry: https://hub.docker.com/repository/docker/peddiraju3122b/spc:1.1    
+    imageregistry: https://hub.docker.com/layers/peddiraju3122b/spc/1.1    
 spec:
   rules:
     - http: 
         paths:
-          - path: peddiraju3122b/spc:1.1
+          - path: peddiraju3122b/spc/1.1
             backend:
               service:
                 name: spc-svc
