@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: Ingress-spc 
+  annotations:
+    imageregistry: https://hub.docker.com/repository/docker/peddiraju3122b/spc    
+spec:
+  rules:
+    - http: https://hub.docker.com/repository/docker/peddiraju3122b/spc
+        paths:
+          - path: /
+            backend:
+              service:
+                name: Ingress-spc
+                port: 
+                  name: Ingress-spc
+                  number: 8080
+            pathType: Exact
