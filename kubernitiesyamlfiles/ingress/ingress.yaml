@@ -7,9 +7,9 @@ metadata:
     imageregistry: https://hub.docker.com/repository/docker/peddiraju3122b/spc    
 spec:
   rules:
-    - http: https://hub.docker.com/repository/docker/peddiraju3122b/spc
+    - http: 
         paths:
-          - path: /
+          - path: .
             backend:
               service:
                 name: spc-svc
