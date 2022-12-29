@@ -9,7 +9,7 @@ spec:
   rules:
     - http: 
         paths:
-          - path: peddiraju3122b/spc/1.1
+          - path: /spc/1.1
             backend:
               service:
                 name: spc-svc

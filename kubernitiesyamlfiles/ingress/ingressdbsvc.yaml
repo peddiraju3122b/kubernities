@@ -1,0 +1,70 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spc-svc 
+  annotations:
+    imageregistry: https://hub.docker.com/layers/peddiraju3122b/spc/1.1    
+spec:
+  rules:
+    - http: 
+        paths:
+          - path: peddiraju3122b/spc/1.1
+            backend:
+              service:
+                name: spc-svc
+                port: 
+                  number: 8080
+            pathType: Exact
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: spc-db-deploy
+spec:
+  minReadySeconds: 3
+  replicas: 1
+  selector:
+    matchLabels: 
+      name: spc-db-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template: 
+    metadata:
+      name: spc-db-pod
+      labels:
+        name: spc-db-deploy
+    spec:
+      containers:
+        - name: spc-db-deploy
+          image: peddiraju3122b/spc:1.1
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: spc-db-vol
+              mountPath: /spc
+      volumes:
+        - name: spc-db-vol
+          secret:
+            secretName: spc
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spc-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: spc
+  ports:
+    - name: spcport
+      port: 8080      
+      protocol: TCP            
