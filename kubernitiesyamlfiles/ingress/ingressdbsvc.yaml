@@ -67,7 +67,7 @@ spec:
   ports:
     - name: spcport
       port: 8080      
-      protocol: TCP            
+      protocol: TCP      
 
 ---
 apiVersion: v1
