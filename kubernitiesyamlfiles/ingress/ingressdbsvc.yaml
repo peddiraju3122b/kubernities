@@ -75,7 +75,7 @@ kind: Service
 metadata:
   name: spc-svc-lb
   annotations:
-    kubernetes.io/role/internal-elb:"1"
+    imageregistry: kubernetes.io/role/internal-elb:"1"
 spec:
   type: LoadBalancer
   selector:
