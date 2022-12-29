@@ -9,11 +9,10 @@ spec:
   rules:
     - http: 
         paths:
-          - path: .
+          - path: https://hub.docker.com/repository/docker/peddiraju3122b/spc
             backend:
               service:
                 name: spc-svc
                 port: 
-                  name: spc-svc
                   number: 8080
             pathType: Exact
